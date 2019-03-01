@@ -234,7 +234,7 @@ bool PN532::SAMConfig(void)
 {
     pn532_packetbuffer[0] = PN532_COMMAND_SAMCONFIGURATION;
     pn532_packetbuffer[1] = 0x01; // normal mode;
-    pn532_packetbuffer[2] = 0x14; // timeout 50ms * 20 = 1 second
+    pn532_packetbuffer[2] = (uint8_t)(PN532_READ_WAIT_TIME / 50); // timeout in 50ms
     pn532_packetbuffer[3] = 0x01; // use IRQ pin!
 
     DMSG("SAMConfig\n");
@@ -701,7 +701,7 @@ bool PN532::inDataExchange(const uint8_t *send, uint8_t sendLength, uint8_t *res
         return false;
     }
 
-    int16_t status = HAL(readResponse)(response, *responseLength, 1000);
+    int16_t status = HAL(readResponse)(response, *responseLength);
     if (status < 0) {
         return false;
     }

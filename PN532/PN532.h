@@ -140,7 +140,7 @@ public:
 
     // ISO14443A functions
     bool inListPassiveTarget();
-    bool readPassiveTargetID(uint8_t cardbaudrate, uint8_t *uid, uint8_t *uidLength, uint16_t timeout = 1000, bool inlist = false);
+    bool readPassiveTargetID(uint8_t cardbaudrate, uint8_t *uid, uint8_t *uidLength, uint16_t timeout = PN532_READ_WAIT_TIME, bool inlist = false);
     bool inDataExchange(const uint8_t *send, uint8_t sendLength, uint8_t *response, uint8_t *responseLength);
 
     // Mifare Classic functions
