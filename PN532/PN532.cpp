@@ -6,7 +6,11 @@
 */
 /**************************************************************************/
 
+#ifdef ARDUINO
 #include "Arduino.h"
+#else
+#include <stdio.h>
+#endif
 #include "PN532.h"
 #include "PN532_debug.h"
 #include <string.h>
